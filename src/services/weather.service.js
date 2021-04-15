@@ -6,7 +6,5 @@ export const fetchWeatherByCity = async (zipCode, unit) => {
     url: `${BASE_WEATHER_URL}/weather?zipCode=${zipCode}`,
     method: 'GET'
   })
-  console.log('response', response);
-  
   return response.data
 }

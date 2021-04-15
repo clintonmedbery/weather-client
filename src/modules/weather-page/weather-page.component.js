@@ -1,31 +1,36 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import WeatherCard from '../../business-components/weather-card/weather-card.component'
 import { fetchWeatherByCity } from '../../services/weather.service'
 import { Button } from '../../ui-components/button.component'
-import { Input } from '../../ui-components/input.component'
-import styles from './weather-page.styles.module.css'
+import { WeatherFooter } from './weather-footer.component'
+import { WeatherHeader } from './weather-header.component'
 const CURRENT_DAY = 1
 const FIVE_DAYS = 5
 
-const WeatherPage = props => {
-  const [zipCode, setZipCode] = useState()
+const WeatherPage = () => {
+  const [zipCode, setZipCode] = useState(localStorage.getItem('lastZipCode'))
   const [weather, setWeather] = useState([])
+  const [cityName, setCityName] = useState(null)
   const [weatherLoading, setWeatherLoading] = useState(false)
   const [zipError, setZipError] = useState(false)
   const [forecastDays, setForecastDays] = useState(CURRENT_DAY)
 
+  useEffect(() => {
+    if (zipCode) {
+      getWeather()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const formattedWeatherData = useMemo(() => {
     let newWeatherData = weather.slice(0, forecastDays)
     return newWeatherData.map((weatherItem, index) => (
-      <div className='mx-auto mb-3 space-x-3 flex-1'>
+      <div key={index} className='mx-auto mb-3 space-x-3 flex-1'>
         <WeatherCard
-          key={index}
           iconName={weatherItem.iconName}
           date={weatherItem.date}
           temperature={weatherItem.temperature}
           description={weatherItem.description}
-          // unit={unit}
         />
       </div>
     ))
@@ -38,14 +43,15 @@ const WeatherPage = props => {
 
   const getWeather = async () => {
     setZipError(false)
+    setCityName(null)
+    setWeather([])
     try {
       setWeatherLoading(true)
       const newWeather = await fetchWeatherByCity(zipCode)
-
-      setWeather(newWeather)
+      setCityName(newWeather.cityName)
+      setWeather(newWeather.data)
+      localStorage.setItem('lastZipCode', zipCode)
     } catch (e) {
-      console.log('e.response', e.response)
-
       if (e.response.status === 400) {
         setZipError(true)
       }
@@ -65,7 +71,7 @@ const WeatherPage = props => {
 
   return (
     <>
-      <Header
+      <WeatherHeader
         zipCode={zipCode}
         changeZip={changeZip}
         zipError={zipError}
@@ -80,51 +86,9 @@ const WeatherPage = props => {
           </div>
         </>
       )}
-      <WeatherFooter />
+      <WeatherFooter cityName={cityName} forecastDays={forecastDays} />
     </>
   )
 }
 
 export default WeatherPage
-
-const Header = ({
-  zipCode,
-  changeZip,
-  zipError,
-  getWeather,
-  weatherLoading
-}) => {
-  return (
-    <div className={`${styles.header} flex w-90 m-3 p-3`}>
-      <div className='my-auto text-left flex-grow text-grungegreen text-shadow-black'>
-        Current Weather
-      </div>
-      <div className='flex-none'>
-        <Input
-          placeholder='Enter Zip Code'
-          value={zipCode}
-          onChange={e => {
-            changeZip(e.target.value)
-          }}
-          inputProps={{ maxlength: 5 }}
-          errorMessage={zipError ? 'Invalid Zip Code' : null}
-        />
-      </div>
-      <div className='flex-none p-1'>
-        <Button
-          icon={faSearch}
-          onClick={getWeather}
-          disabled={weatherLoading}
-        />
-      </div>
-    </div>
-  )
-}
-
-const WeatherFooter = () => {
-  return (
-    <div className='absolute bottom-0 w-full bg-indigo h-12 text-left text-white text-sh'>
-      Current Conditions
-    </div>
-  )
-}

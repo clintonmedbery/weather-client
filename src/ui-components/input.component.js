@@ -1,11 +1,32 @@
 import React from 'react'
+import * as PropTypes from 'prop-types'
 
 export const INPUT_TYPES = Object.freeze({
   TEXT: 'text',
   PASSWORD: 'password'
 })
 
-export const Input = ({
+const propTypes = {
+  type: PropTypes.oneOf([INPUT_TYPES.TEXT, INPUT_TYPES.PASSWORD]),
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  className: PropTypes.string,
+  errorMessage: PropTypes.string,
+  inputProps: PropTypes.object
+}
+
+const defaultProps = {
+  type: INPUT_TYPES.TEXT,
+  placeholder: null,
+  onChange: null,
+  value: null,
+  className: '',
+  errorMessage: null,
+  inputProps: null
+}
+
+const Input = ({
   type = INPUT_TYPES.TEXT,
   placeholder,
   onChange,
@@ -14,7 +35,6 @@ export const Input = ({
   errorMessage,
   inputProps
 }) => {
-
   return (
     <>
       <input
@@ -28,10 +48,15 @@ export const Input = ({
         {...inputProps}
       />
       {errorMessage && (
-        <div className='text-left  ml-1 text-red-500 text-sm'>
+        <div className='text-shadow-black text-left  ml-1 text-red-500 text-sm'>
           {errorMessage}
         </div>
       )}
     </>
   )
 }
+
+Input.propTypes = propTypes
+Input.defaultProps = defaultProps
+
+export { Input }
