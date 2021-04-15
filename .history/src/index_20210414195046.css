@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'VCR_OSD_MONO';
+  src: local('VCR_OSD_MONO'),
+    url(./fonts/VCR_OSD_MONO.001.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, 'VCR_OSD_MONO', BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@layer utilities {
+  @variants responsive {
+      .text-shadow-black {
+        text-shadow: 2px 2px 4px black;
+      }
+      .text-shadow-md {
+        text-shadow: 4px 4px 8px black;
+      }
+      .text-shadow-lg {
+        text-shadow: 15px 15px 30px black;
+      }
+      .text-shadow-none {
+        text-shadow: none;
+      }
+  } 
+}
