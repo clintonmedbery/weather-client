@@ -1,10 +1,10 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import React, { useState, useEffect, useMemo } from 'react'
-import WeatherCard from '../business-components/weather-card.component'
-import { fetchWeatherByCity } from '../services/weather.service'
-import { Button } from '../ui-components/button.component'
-import { Input } from '../ui-components/input.component'
-
+import React, { useState, useMemo } from 'react'
+import WeatherCard from '../../business-components/weather-card/weather-card.component'
+import { fetchWeatherByCity } from '../../services/weather.service'
+import { Button } from '../../ui-components/button.component'
+import { Input } from '../../ui-components/input.component'
+import styles from './weather-page.styles.module.css'
 const CURRENT_DAY = 1
 const FIVE_DAYS = 5
 
@@ -37,15 +37,18 @@ const WeatherPage = props => {
   }
 
   const getWeather = async () => {
+    setZipError(false)
     try {
       setWeatherLoading(true)
       const newWeather = await fetchWeatherByCity(zipCode)
-      if (newWeather.length === 0) {
-        setZipError(true)
-      }
+
       setWeather(newWeather)
     } catch (e) {
-      console.log(e)
+      console.log('e.response', e.response)
+
+      if (e.response.status === 400) {
+        setZipError(true)
+      }
     }
     setWeatherLoading(false)
   }
@@ -65,6 +68,7 @@ const WeatherPage = props => {
       <Header
         zipCode={zipCode}
         changeZip={changeZip}
+        zipError={zipError}
         getWeather={getWeather}
         weatherLoading={weatherLoading}
       />
@@ -74,9 +78,9 @@ const WeatherPage = props => {
           <div className='mt-4'>
             <Button onClick={toggleForecastDays} title={moreButtonMessage} />
           </div>
-        
         </>
       )}
+      <WeatherFooter />
     </>
   )
 }
@@ -91,7 +95,7 @@ const Header = ({
   weatherLoading
 }) => {
   return (
-    <div className='flex w-90 bg-burntorange m-3 p-3'>
+    <div className={`${styles.header} flex w-90 m-3 p-3`}>
       <div className='my-auto text-left flex-grow text-grungegreen text-shadow-black'>
         Current Weather
       </div>
@@ -103,6 +107,7 @@ const Header = ({
             changeZip(e.target.value)
           }}
           inputProps={{ maxlength: 5 }}
+          errorMessage={zipError ? 'Invalid Zip Code' : null}
         />
       </div>
       <div className='flex-none p-1'>
@@ -112,6 +117,14 @@ const Header = ({
           disabled={weatherLoading}
         />
       </div>
+    </div>
+  )
+}
+
+const WeatherFooter = () => {
+  return (
+    <div className='absolute bottom-0 w-full bg-indigo h-12 text-left text-white text-sh'>
+      Current Conditions
     </div>
   )
 }

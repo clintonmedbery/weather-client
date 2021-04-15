@@ -1,7 +1,8 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import * as PropTypes from 'prop-types'
-import { F_UNIT, M_UNIT } from '../constants/constants'
+import { F_UNIT, M_UNIT } from '../../constants/constants'
+import styles from './weather-card.styles.module.css'
 
 const propTypes = {
   iconName: PropTypes.string.isRequired,
@@ -23,7 +24,9 @@ const WeatherCard = ({ iconName, description, date, temperature, unit }) => {
   const dayOfWeek = dayjs(date).format('dddd')
   const unitLabel = F_UNIT === unit ? 'F' : 'C'
   return (
-    <div className='text-shadow-black text-white  bg-gradient-to-b from-indigo to-indigo-20 rounded-xl shadow-md w-10/12 md:w-40 lg:w-44 mx-auto'>
+    <div
+      className={`${styles.card} text-shadow-black text-white  bg-indigo w-10/12 md:w-40 lg:w-44 mx-auto py-2`}
+    >
       <div>{dayOfWeek}</div>
       <img src={`/weather-icons/${iconName}.png`} className='mx-auto' />
       <div>{`${temperature} ${unitLabel}`}</div>
