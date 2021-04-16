@@ -12,10 +12,10 @@ export const WeatherHeader = ({
   weatherLoading
 }) => {
   return (
-    <div className={`${styles.header} flex w-full m-3 p-3 h-24`}>
+    <div className={`${styles.header} flex w-full my-3 p-3 h-24`}>
       <img
         src='./logo.png'
-        className='w-16 md:w-20 h-auto'
+        className='w-20 md:w-20 h-auto'
         alt='weather channel logo'
       />
       <div className='my-auto ml-3 text-left flex-grow text-grungegreen text-shadow-black text-xl'>
@@ -29,6 +29,7 @@ export const WeatherHeader = ({
             changeZip(e.target.value)
           }}
           inputProps={{ maxLength: 5 }}
+          className="w-36"
           errorMessage={zipError ? 'Invalid Zip Code' : null}
         />
       </div>

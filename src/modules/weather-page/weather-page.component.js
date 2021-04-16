@@ -13,8 +13,10 @@ const WeatherPage = () => {
   const [cityName, setCityName] = useState(null)
   const [weatherLoading, setWeatherLoading] = useState(false)
   const [zipError, setZipError] = useState(false)
+  //In the future we pass this back to the API
   const [forecastDays, setForecastDays] = useState(CURRENT_DAY)
 
+  //If zipcode is initialized from local storage, then lets get the weather
   useEffect(() => {
     if (zipCode) {
       getWeather()
@@ -50,6 +52,7 @@ const WeatherPage = () => {
       const newWeather = await fetchWeatherByCity(zipCode)
       setCityName(newWeather.cityName)
       setWeather(newWeather.data)
+      //If this is a successful call, we set the zip to be a default so you can revisit
       localStorage.setItem('lastZipCode', zipCode)
     } catch (e) {
       if (e.response.status === 400) {
@@ -70,7 +73,7 @@ const WeatherPage = () => {
       : 'Show Current Day Forecast'
 
   return (
-    <>
+    <div className="pb-48">
       <WeatherHeader
         zipCode={zipCode}
         changeZip={changeZip}
@@ -87,7 +90,7 @@ const WeatherPage = () => {
         </>
       )}
       <WeatherFooter cityName={cityName} forecastDays={forecastDays} />
-    </>
+    </div>
   )
 }
 

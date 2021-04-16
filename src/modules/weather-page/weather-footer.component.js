@@ -2,7 +2,7 @@ import React from 'react';
 
 export const WeatherFooter = ({ cityName, forecastDays }) => {
   return (
-    <div className='absolute bottom-0 w-full bg-indigo h-32'>
+    <div className='fixed bottom-0 w-full bg-indigo h-32'>
       <div className='mt-3 ml-8 text-left text-white text-sh text-xl'>
         {forecastDays > 0 &&
           cityName &&

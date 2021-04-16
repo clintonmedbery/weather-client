@@ -26,6 +26,7 @@ const defaultProps = {
   inputProps: null
 }
 
+//Simple Input Comonent that can show an error message
 const Input = ({
   type = INPUT_TYPES.TEXT,
   placeholder,
