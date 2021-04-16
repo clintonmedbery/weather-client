@@ -15,7 +15,7 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, 'VCR_OSD_MONO', BlinkMacSystemFont, 'Segoe UI',
+  font-family: 'VCR_OSD_MONO',  -apple-system, BlinkMacSystemFont, 'Segoe UI',
     'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,10 +27,6 @@ body {
   background-attachment: fixed;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 /* https://github.com/tailwindlabs/tailwindcss/issues/162 */
 @layer utilities {

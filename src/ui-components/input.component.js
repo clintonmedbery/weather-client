@@ -20,7 +20,7 @@ const defaultProps = {
   type: INPUT_TYPES.TEXT,
   placeholder: null,
   onChange: null,
-  value: null,
+  value: undefined,
   className: '',
   errorMessage: null,
   inputProps: null
