@@ -1,5 +1,13 @@
 # 80s Weather Channel App
 
+What it looks like:
+
+<img src="https://github.com/clintonmedbery/weather-client/blob/main/media/classicScreen.png" width="600" />
+
+What it is based on: 
+
+<img src="https://github.com/clintonmedbery/weather-client/blob/main/media/original.jpg?raw=true" width="600" />
+
 Modeled this app off of the Weather Channel vibe from the 80s. Hideous or nostalgic, you decide.
 
 using...
