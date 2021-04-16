@@ -1,5 +1,13 @@
 # 80s Weather Channel App
 
+What it looks like:
+
+<img src="https://github.com/clintonmedbery/weather-client/blob/main/media/classicScreen.png" width="600" />
+
+What it is based on: 
+
+<img src="https://github.com/clintonmedbery/weather-client/blob/main/media/original.jpg?raw=true" width="600" />
+
 Modeled this app off of the Weather Channel vibe from the 80s. Hideous or nostalgic, you decide.
 
 using...
@@ -22,6 +30,14 @@ cd weather
 Clone this repo in that folder
 
 Clone https://github.com/clintonmedbery/weather-api to that folder
+
+### Docker Setup
+
+Grab docker-compose.yml and put it in root folder. This can take awhile first time.
+
+`docker-compose up`
+
+### Otherwise...
 
 ### Set up API
 
@@ -62,12 +78,6 @@ cd weather-api
 yarn install
 yarn start
 ```
-
-### Docker Setup
-
-Grab docker-compose.yml and put it in root folder
-
-`docker-compose up`
 
 This could take awhile the first time, (took me 20+ min)
 
