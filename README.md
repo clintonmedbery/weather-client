@@ -31,6 +31,14 @@ Clone this repo in that folder
 
 Clone https://github.com/clintonmedbery/weather-api to that folder
 
+### Docker Setup
+
+Grab docker-compose.yml and put it in root folder. This can take awhile first time.
+
+`docker-compose up`
+
+### Otherwise...
+
 ### Set up API
 
 `cd weather-api`
@@ -70,12 +78,6 @@ cd weather-api
 yarn install
 yarn start
 ```
-
-### Docker Setup
-
-Grab docker-compose.yml and put it in root folder
-
-`docker-compose up`
 
 This could take awhile the first time, (took me 20+ min)
 
