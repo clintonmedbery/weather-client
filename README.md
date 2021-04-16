@@ -37,7 +37,7 @@ https://www.weatherbit.io/
 
 ### Create a .env file and add this line
 
-```WEATHERBIT_API_KEY="my key"```
+`WEATHERBIT_API_KEY="my key"`
 
 ### Run With Node
 
@@ -62,6 +62,14 @@ cd weather-api
 yarn install
 yarn start
 ```
+
+### Docker Setup
+
+Grab docker-compose.yml and put it in root folder
+
+`docker-compose up`
+
+This could take awhile the first time, (took me 20+ min)
 
 ### Basic Create React App Instructions
 

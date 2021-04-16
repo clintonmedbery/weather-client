@@ -1,0 +1,29 @@
+#This compose file is meant for development use only. Not for prod
+#Put this in root folder
+#Take a good bit of time to start the first time
+version: "3"
+services:
+    weather-client:
+        image: node:14.16.0
+        volumes:
+            - ./weather-client:/weather-client:cached
+        working_dir: /weather-client
+        environment:
+            - NODE_ENV=development
+        ports:
+            - 3000:3000
+        command: bash -c "yarn install --verbose && yarn start"
+        links:
+            - weather-api
+    weather-api:
+        image: node:14.16.0
+        volumes:
+            - ./weather-api:/weather-api:cached
+        working_dir: /weather-api
+        environment:
+            - NODE_ENV=development
+        ports:
+            - 4000:4000
+        command: bash -c "npm install && npm run start"
+   
+   
