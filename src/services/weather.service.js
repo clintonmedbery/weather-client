@@ -26,7 +26,7 @@ export const fetchWeatherByZipCode = async (zipCode, unit = F_UNIT) => {
       })
       .splice(0, 5)
     const weather = {
-      cityName: response.city_name,
+      cityName: response?.data.city_name,
       data: weatherData
     }
     return weather

@@ -29,7 +29,7 @@ export const WeatherHeader = ({
             changeZip(e.target.value)
           }}
           inputProps={{ maxLength: 5 }}
-          className="w-36"
+          className="w-40"
           errorMessage={zipError ? 'Invalid Zip Code' : null}
         />
       </div>
