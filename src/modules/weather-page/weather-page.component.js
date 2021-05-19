@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import WeatherCard from '../../business-components/weather-card/weather-card.component'
-import { fetchWeatherByCity } from '../../services/weather.service'
+import { BAD_ZIP } from '../../constants/constants'
+import { fetchWeatherByZipCode } from '../../services/weather.service'
 import { Button } from '../../ui-components/button.component'
 import { WeatherFooter } from './weather-footer.component'
 import { WeatherHeader } from './weather-header.component'
@@ -49,13 +50,16 @@ const WeatherPage = () => {
     setWeather([])
     try {
       setWeatherLoading(true)
-      const newWeather = await fetchWeatherByCity(zipCode)
+      const newWeather = await fetchWeatherByZipCode(zipCode)
+      console.log('newWeather', newWeather)
+      
       setCityName(newWeather.cityName)
       setWeather(newWeather.data)
       //If this is a successful call, we set the zip to be a default so you can revisit
       localStorage.setItem('lastZipCode', zipCode)
     } catch (e) {
-      if (e.response.status === 400) {
+      console.log(e.message)
+      if (e.message === BAD_ZIP) {
         setZipError(true)
       }
     }
@@ -73,7 +77,7 @@ const WeatherPage = () => {
       : 'Show Current Day Forecast'
 
   return (
-    <div className="pb-48">
+    <div className='pb-48'>
       <WeatherHeader
         zipCode={zipCode}
         changeZip={changeZip}
