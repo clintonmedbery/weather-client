@@ -50,9 +50,7 @@ const WeatherPage = () => {
     setWeather([])
     try {
       setWeatherLoading(true)
-      const newWeather = await fetchWeatherByZipCode(zipCode)
-      console.log('newWeather', newWeather)
-      
+      const newWeather = await fetchWeatherByZipCode(zipCode)      
       setCityName(newWeather.cityName)
       setWeather(newWeather.data)
       //If this is a successful call, we set the zip to be a default so you can revisit

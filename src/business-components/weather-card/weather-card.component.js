@@ -28,7 +28,7 @@ const WeatherCard = ({ iconName, description, date, temperature, unit }) => {
       className={`${styles.card} text-shadow-black text-white  bg-indigo w-10/12 md:w-40 lg:w-44 mx-auto py-2`}
     >
       <div>{dayOfWeek}</div>
-      <img src={`/weather-icons/${iconName}.png`} className='mx-auto' />
+      <img src={`/weather-icons/${iconName}.png`} className='mx-auto' alt={iconName}/>
       <div>{`${temperature} ${unitLabel}`}</div>
       <div>{description}</div>
     </div>
