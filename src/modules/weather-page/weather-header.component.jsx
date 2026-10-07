@@ -18,7 +18,7 @@ export const WeatherHeader = ({
         className='w-20 md:w-20 h-auto'
         alt='weather channel logo'
       />
-      <div className='my-auto ml-3 text-left flex-grow text-grungegreen text-shadow-black text-xl'>
+      <div className='my-auto ml-3 text-left flex-grow text-grungegreen text-shadow-retro text-xl'>
         Current Weather
       </div>
       <div className='flex-none my-auto h-20 mt-3'>

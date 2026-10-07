@@ -1,6 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-indigo-20: #3a54b1;
+  --color-indigo: #212867;
+  --color-purplegray: #2e3241;
+  --color-lightblue-20: #eeebff;
+  --color-lightblue: #d9d2fb;
+  --color-burntorange: #c46700;
+  --color-burntorange-900: #502841;
+  --color-grungegreen: #b0b25d;
+  --color-disabledgray: #c9ccd2;
+}
 
 @font-face {
   font-family: 'VCR_OSD_MONO';
@@ -27,12 +37,6 @@ body {
   background-attachment: fixed;
 }
 
-
-/* https://github.com/tailwindlabs/tailwindcss/issues/162 */
-@layer utilities {
-  @variants responsive {
-    .text-shadow-black {
-      text-shadow: 1px 1px 0px black;
-    }
-  }
+@utility text-shadow-retro {
+  text-shadow: 1px 1px 0px black;
 }

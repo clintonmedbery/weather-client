@@ -8,9 +8,9 @@ export const BUTTON_TYPES = Object.freeze({
 
 const styles = {
   roundButton:
-    'text-shadow-black rounded-full hover:bg-blue-700 text-white font-normal py-2 px-4 rounded text-sm focus:outline-none focus:ring',
+    'text-shadow-retro rounded-full hover:bg-blue-700 text-white font-normal py-2 px-4 rounded text-sm focus:outline-none focus:ring-3',
   lightRoundButton:
-    'text-shadow-black rounded-full hover:bg-grey  border-solid border border-indigo text-indigo font-normal py-2 px-4 rounded text-sm focus:outline-none focus:ring'
+    'text-shadow-retro rounded-full hover:bg-grey  border-solid border border-indigo text-indigo font-normal py-2 px-4 rounded text-sm focus:outline-none focus:ring-3'
 }
 
 const colors = {
