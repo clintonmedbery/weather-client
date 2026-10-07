@@ -9,7 +9,7 @@ const CURRENT_DAY = 1
 const FIVE_DAYS = 5
 
 const WeatherPage = () => {
-  const [zipCode, setZipCode] = useState(localStorage.getItem('lastZipCode'))
+  const [zipCode, setZipCode] = useState(localStorage.getItem('lastZipCode') ?? '')
   const [weather, setWeather] = useState([])
   const [cityName, setCityName] = useState(null)
   const [weatherLoading, setWeatherLoading] = useState(false)
